@@ -4,16 +4,16 @@
 	{
 		"#format"	"{1:s},{2:s}"
 
-		"en"		"<span class='fontSize-xl'>Retake Bombsite: <span color='#00FF00'>{1}</span>\n\n<b><span color='#FFA500'>{2}</b></span></span>"
+		"en"		"<span class='fontSize-l'>Retake Bombsite: <span color='#00FF00'>{1}</span>\n\n<b><span color='#FFA500'>{2}</b></span></span>"
 	}
 	"T_MSG"
 	{
 		"#format"	"{1:s},{2:s}"
 
-		"en"		"<span class='fontSize-xl'>Defend Bombsite: <span color='#00FF00'>{1}</span>\n\n<b><span color='#FFA500'>{2}</b></span></span>"
+		"en"		"<span class='fontSize-l'>Defend Bombsite: <span color='#00FF00'>{1}</span>\n\n<b><span color='#FFA500'>{2}</b></span></span>"
 	}
 	"PLANTER_MSG"
     {
-		"en"		"<span class='fontSize-xl'>You have the <span color='#ff726f'>BOMB</span>!</span>"
+		"en"		"<span class='fontSize-l'>You have the <span color='#ff726f'>BOMB</span>!</span>"
     }
 }
