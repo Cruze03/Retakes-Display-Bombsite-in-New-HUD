@@ -12,7 +12,7 @@ public Plugin myinfo =
 	name = "Retake Bomsite HUD in New HTML HUD",
 	author = "Cruze",
 	description = "Displays bombsite in hud at roundstart.",
-	version = "1.13",
+	version = "1.14",
 	url = "http://steamcommunity.com/profiles/76561198132924835"
 };
 
@@ -57,7 +57,7 @@ public Action Event_RoundStart(Event ev, const char[] name, bool dbc)
 
 public Action Timer_DisplayHUD(Handle timer)
 {
-	char sBuffer[64], sRound[64], sBombsite[8];
+	char sBuffer[256], sRound[64], sBombsite[8];
 	int team = -1;
 	MyWeaponAllocator_GetRoundName(sRound);
 	Format(sBombsite, 8, "%s", Retakes_GetCurrrentBombsite() == BombsiteA ? "A" : "B");
@@ -68,16 +68,16 @@ public Action Timer_DisplayHUD(Handle timer)
 		{
 			if(!HasBomb(i))
 			{
-				Format(sBuffer, 64, "%T", "T_MSG", i, sBombsite, sRound);
+				Format(sBuffer, 256, "%T", "T_MSG", i, sBombsite, sRound);
 			}
 			else
 			{
-				Format(sBuffer, 64, "%T\n\n%T", "T_MSG", i, sBombsite, sRound, "PLANTER_MSG", i);
+				Format(sBuffer, 256, "%T\n\n%T", "T_MSG", i, sBombsite, sRound, "PLANTER_MSG", i);
 			}
 		}
 		else if(team == 3)
 		{
-			Format(sBuffer, 64, "%T", "CT_MSG", i, sBombsite, sRound);
+			Format(sBuffer, 256, "%T", "CT_MSG", i, sBombsite, sRound);
 		}
 		DisplayHTMLHud(i, sBuffer);
 		CreateTimer(g_fHoldTime, Timer_ClearHud, GetClientUserId(i), TIMER_FLAG_NO_MAPCHANGE);
