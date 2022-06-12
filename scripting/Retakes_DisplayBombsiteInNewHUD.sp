@@ -8,10 +8,10 @@ float g_fHoldTime = 3.0;
 
 public Plugin myinfo = 
 {
-	name = "Retake HUD in New HTML HUD",
+	name = "Retake Bomsite HUD in New HTML HUD",
 	author = "Cruze",
 	description = "Displays bombsite in hud at roundstart.",
-	version = "1.0",
+	version = "1.1",
 	url = "http://steamcommunity.com/profiles/76561198132924835"
 };
 
@@ -22,7 +22,7 @@ public void OnPluginStart()
 	
 	HookEvent("round_start", Event_RoundStart);
 	
-	LoadTranslations("retakenewhud.phrases");
+	LoadTranslations("retakesnewhud.phrases");
 }
 
 public int OnCvarChange(ConVar convar, const char[] oldVal, const char[] newVal)
