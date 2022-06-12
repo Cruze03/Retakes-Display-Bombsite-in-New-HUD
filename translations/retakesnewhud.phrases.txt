@@ -1,0 +1,19 @@
+"Phrases"
+{
+	"CT_MSG"
+	{
+		"#format"	"{1:s}"
+		
+		"en"		"Retake Bombsite: <span color='#00FF00'>{1}</span>"
+	}
+	"T_MSG"
+	{
+		"#format"	"{1:s}"
+		
+		"en"		"Defend Bombsite: <span color='#00FF00'>{1}</span>"
+	}
+	"PLANTER_MSG"
+    {
+        "en"		"You have the <span color='#ff726f'>BOMB</span>!"
+    }
+}
