@@ -3,24 +3,28 @@
 #include <cstrike>
 #include <retakes>
 
-ConVar g_hHoldtime;
-float g_fHoldTime = 3.0;
+ConVar g_hHoldtime, g_hDelay;
+float g_fHoldTime = 3.0, g_fDelay = 1.5;
 
 public Plugin myinfo = 
 {
 	name = "Retake Bomsite HUD in New HTML HUD",
 	author = "Cruze",
 	description = "Displays bombsite in hud at roundstart.",
-	version = "1.1",
+	version = "1.12",
 	url = "http://steamcommunity.com/profiles/76561198132924835"
 };
 
 public void OnPluginStart()
 {
-	g_hHoldtime = CreateConVar("sm_retakehud_holdtime", "3.0", "Hold time for the hud", _, true, 1.0);
-	HookConVarChange(g_hHoldtime, OnCvarChange);
-	
 	HookEvent("round_start", Event_RoundStart);
+	
+	g_hHoldtime = CreateConVar("sm_retakehud_holdtime", "3.0", "Hold time for the hud.", _, true, 1.0);
+	g_hDelay = CreateConVar("sm_retakehud_delay", "1.5", "Delay after roundstart to display hud.");
+	HookConVarChange(g_hHoldtime, OnCvarChange);
+	HookConVarChange(g_hDelay, OnCvarChange);
+	
+	AutoExecConfig(true, "retakes-bombsiteinnewhud");
 	
 	LoadTranslations("retakesnewhud.phrases");
 }
@@ -32,11 +36,13 @@ public int OnCvarChange(ConVar convar, const char[] oldVal, const char[] newVal)
 		return;
 	}
 	g_fHoldTime = g_hHoldtime.FloatValue;
+	g_fDelay = g_hDelay.FloatValue;
 }
 
 public void OnAutoConfigsBuffered()
 {
 	g_fHoldTime = g_hHoldtime.FloatValue;
+	g_fDelay = g_hDelay.FloatValue;
 }
 
 public Action Event_RoundStart(Event ev, const char[] name, bool dbc)
@@ -45,7 +51,7 @@ public Action Event_RoundStart(Event ev, const char[] name, bool dbc)
     {
         return;
     }
-	CreateTimer(0.5, Timer_DisplayHUD);
+	CreateTimer(g_fDelay, Timer_DisplayHUD);
 }
 
 public Action Timer_DisplayHUD(Handle timer)
